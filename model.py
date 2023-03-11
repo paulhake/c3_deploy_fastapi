@@ -1,5 +1,6 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 
 # Optional: implement hyperparameter tuning.
@@ -62,4 +63,5 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
+    #mod = joblib.load(model)
     return model.predict(X)

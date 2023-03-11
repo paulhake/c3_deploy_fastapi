@@ -10,7 +10,7 @@ def test_columns_names(data):
     expected_columns = [
         "age",
         "workclass",
-        "fnlwgt",
+        "fnlgt",
         "education",
         "education-num",
         "marital-status",
@@ -22,7 +22,7 @@ def test_columns_names(data):
         "capital-loss",
         "hours-per-week",
         "native-country",
-        "income"
+        "salary"
     ]
 
     curr_columns = data.columns.values

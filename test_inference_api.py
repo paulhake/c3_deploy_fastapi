@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from inference_api import app
+from main import app
 
 client = TestClient(app)
 
@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_home():
     r = client.get('/')
     assert r.status_code == 200
-    assert r.json() == {"Hello": "Welcome to project 3!"}
+    assert r.json() == {"Hello": "Welcome to project 3x"}
 
 
 def test_1_predict_income():
