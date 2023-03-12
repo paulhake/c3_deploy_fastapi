@@ -10,7 +10,7 @@ def data():
     data_path = 'data/cleaned_census.csv'
 
     if data_path is None:
-        pytest.fail("You must provide the --csv option")
+        pytest.fail("You must provide --csv option")
 
     df = pd.read_csv(data_path)
 
