@@ -7,14 +7,14 @@ client = TestClient(app)
 def test_home():
     r = client.get('/')
     assert r.status_code == 200
-    assert r.json() == {"Hello": "Welcome to project 3x"}
+    assert r.json() == {"Hello": "Welcome to project 3 - Model deployment and testing"}
 
 
 def test_1_predict_income():
     row1 = {
         "age": 32,
         "workclass": "Private",
-        "fnlwgt": 205019,
+        "fnlgt": 205019,
         "education": "Assoc-acdm",
         "education_num": 12,
         "marital_status": "Never-married",
@@ -29,14 +29,13 @@ def test_1_predict_income():
     }
     r = client.post('/inference', json=row1)
     assert r.status_code == 200
-    assert r.json() == {"income class": '<=50K'}
-
+    assert r.json() == {"income class": 'low_income'}
 
 def test_2_predict_income():
     row2 = {
         "age": 47,
         "workclass": "Private",
-        "fnlwgt": 51835,
+        "fnlgt": 51835,
         "education": "Prof-school",
         "education_num": 15,
         "marital_status": "Married-civ-spouse",
@@ -51,4 +50,4 @@ def test_2_predict_income():
     }
     r = client.post('/inference', json=row2)
     assert r.status_code == 200
-    assert r.json() == {"income class": '>50K'}
+    assert r.json() == {"income class": 'hi_income'}
