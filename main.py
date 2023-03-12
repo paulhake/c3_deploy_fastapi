@@ -1,6 +1,5 @@
 # Put the code for your API here.
 import os
-#import joblib
 import uvicorn
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
@@ -9,12 +8,11 @@ from pydantic import BaseModel, Field
 import pandas as pd
 import numpy as np
 
-#from train_model import inference
 from online_inference import online_inference
-#from data import process_data
 
 app = FastAPI()
 
+#list of categorical features
 cat_features = [
     "workclass",
     "education",
@@ -26,7 +24,7 @@ cat_features = [
     "native-country",
 ]
 
-
+#pydantic data model for online input
 class RowData(BaseModel):
     age: int = Field(..., example=32)
     workclass: str = Field(..., example="Private")
@@ -43,7 +41,7 @@ class RowData(BaseModel):
     hours_per_week: int = Field(..., example=50)
     native_country: str = Field(..., example="United-States")
 
-
+#config for DVC and Heroku
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
     os.system('rm -rf .dvc/cache')
@@ -53,12 +51,12 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
         exit("dvc pull failed")
     os.system("rm -rf .dvc .apt/usr/lib/dvc")
 
-
+#API functions
 @app.get("/")
 def home():
     return {"Hello": "Welcome to project 3 - Model deployment and testing"}
 
-
+#inference api
 @app.post('/inference')
 async def predict_income(inputrow: RowData):
     row_dict = jsonable_encoder(inputrow)
