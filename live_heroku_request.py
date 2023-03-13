@@ -3,7 +3,7 @@ import requests
 row = {
     "age": 47,
     "workclass": "Private",
-    "fnlwgt": 51835,
+    "fnlgt": 51835,
     "education": "Prof-school",
     "education_num": 15,
     "marital_status": "Married-civ-spouse",
