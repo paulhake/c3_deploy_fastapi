@@ -12,16 +12,16 @@ data = {
     "workclass": "Private",
     "fnlgt": 22222,
     "education": "Bachelors",
-    "education-num": 13,
-    "marital-status": "Married_civ_spouse",
+    "education_num": 13,
+    "marital_status": "Married_civ_spouse",
     "occupation": "Prof_specialty",
     "relationship": "Not-in-family",
     "race": "White",
     "sex": "Female",
-    "capital-gain": 0,
-    "capital-loss": 0,
-    "hours-per-week": 40,
-    "native-country": "United-States"
+    "capital_gain": 0,
+    "capital_loss": 0,
+    "hours_per_week": 40,
+    "native_country": "United-States"
 }
 
 # row = {}

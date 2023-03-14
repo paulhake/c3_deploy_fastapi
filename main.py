@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 # BaseModel from Pydantic is used to define data objects.
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 
@@ -25,24 +25,7 @@ cat_features = [
 ]
 
 #pydantic data model for online input
-'''
-class RowData(BaseModel):
-    age: int = Field(..., example=32)
-    workclass: str = Field(..., example="Private")
-    fnlgt: int = Field(..., example=205019)
-    education: str = Field(..., example="Assoc-acdm")
-    education_num: int = Field(..., example=12)
-    marital_status: str = Field(..., example="Never-married")
-    occupation: str = Field(..., example="Sales")
-    relationship: str = Field(..., example="Not-in-family")
-    race: str = Field(..., example="Black")
-    sex: str = Field(..., example="Male")
-    capital_gain: int = Field(..., example=0)
-    capital_loss: int = Field(..., example=0)
-    hours_per_week: int = Field(..., example=50)
-    native_country: str = Field(..., example="United-States")
 
-'''
 class RowData(BaseModel):
     age: int
     workclass: str
