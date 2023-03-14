@@ -3,16 +3,12 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
-# BaseModel from Pydantic is used to define data objects.
 from pydantic import BaseModel
-import pandas as pd
-import numpy as np
-
 from online_inference import online_inference
 
 app = FastAPI()
 
-#list of categorical features
+# list of categorical features
 cat_features = [
     "workclass",
     "education",
@@ -24,7 +20,8 @@ cat_features = [
     "native-country",
 ]
 
-#pydantic data model for online input
+# pydantic data model for online input
+
 
 class RowData(BaseModel):
     age: int
@@ -42,24 +39,29 @@ class RowData(BaseModel):
     hours_per_week: int
     native_country: str
 
-#config for DVC and Heroku
+
+# config for DVC and Heroku
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 
-#API functions
+# API functions
+
+
 @app.get("/")
 def home():
     return {"Hello": "Welcome to project 3 - Model deployment and testing"}
 
-#inference api
+# inference api
+
+
 @app.post('/inference')
 async def predict_income(inputrow: RowData):
     row_dict = jsonable_encoder(inputrow)
-    preds = online_inference(row_dict=row_dict,cat_features=cat_features)
-    
+    preds = online_inference(row_dict=row_dict, cat_features=cat_features)
+
     return {"income class": preds}
 
 if __name__ == "__main__":
