@@ -17,7 +17,7 @@ row = {
     "native_country": "Honduras"
 }
 applink = 'https://demo-app3.herokuapp.com/inference'
-
+print(type(row))
 response = requests.post(
     url=applink,
     json=row

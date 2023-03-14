@@ -25,6 +25,7 @@ cat_features = [
 ]
 
 #pydantic data model for online input
+'''
 class RowData(BaseModel):
     age: int = Field(..., example=32)
     workclass: str = Field(..., example="Private")
@@ -40,6 +41,23 @@ class RowData(BaseModel):
     capital_loss: int = Field(..., example=0)
     hours_per_week: int = Field(..., example=50)
     native_country: str = Field(..., example="United-States")
+
+'''
+class RowData(BaseModel):
+    age: int
+    workclass: str
+    fnlgt: int
+    education: str
+    education_num: int
+    marital_status: str
+    occupation: str
+    relationship: str
+    race: str
+    sex: str
+    capital_gain: int
+    capital_loss: int
+    hours_per_week: int
+    native_country: str
 
 #config for DVC and Heroku
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
