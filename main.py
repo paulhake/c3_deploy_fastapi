@@ -3,7 +3,7 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from online_inference import online_inference
 
 app = FastAPI()
@@ -24,20 +24,21 @@ cat_features = [
 
 
 class RowData(BaseModel):
-    age: int
-    workclass: str
-    fnlgt: int
-    education: str
-    education_num: int
-    marital_status: str
-    occupation: str
-    relationship: str
-    race: str
-    sex: str
-    capital_gain: int
-    capital_loss: int
-    hours_per_week: int
-    native_country: str
+
+    age: int = Field(..., example=44)
+    workclass: str = Field(..., example="Private")
+    fnlgt: int = Field(..., example=205019)
+    education: str = Field(..., example="Assoc-acdm")
+    education_num: int = Field(..., example=12)
+    marital_status: str = Field(..., example="Never-married")
+    occupation: str = Field(..., example="Sales")
+    relationship: str = Field(..., example="Wife")
+    race: str = Field(..., example="White")
+    sex: str = Field(..., example="Male")
+    capital_gain: int = Field(..., example=0)
+    capital_loss: int = Field(..., example=1902)
+    hours_per_week: int = Field(..., example=50)
+    native_country: str = Field(..., example="United-States")
 
 
 # config for DVC and Heroku
