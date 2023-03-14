@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 from model import inference
 
+
 def online_inference(row_dict, cat_features):
     """ Run model inferences and return the predictions.
 
